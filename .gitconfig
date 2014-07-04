@@ -1,0 +1,11 @@
+[color]
+    ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+[user]
+    name = Alexander Fedorov
+    email = fedorov7@gmail.com
+[core]
+    editor = vim
