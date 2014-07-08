@@ -16,6 +16,14 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'vim-flake8'
 Plugin 'tpope/vim-fugitive'
 Plugin 'fedorov7/vim-uefi'
+Plugin 'scrooloose/syntastic'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'godlygeek/tabular'
+" Plugin 'plasticboy/vim-markdown'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'fidian/hexmode.git'
+
 call vundle#end()
 filetype plugin indent on     " required!
 "
@@ -27,7 +35,7 @@ filetype plugin indent on     " required!
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
-
+"
 
 "-------------------------------------------------------------------------------
 " Switch syntax highlighting on.
@@ -65,9 +73,10 @@ set expandtab 			            " tabs are replaced with spacing
 set tabstop=2
 set shiftwidth=2
 
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256 
-endif
+" if $COLORTERM == 'gnome-terminal'
+set laststatus=2
+set t_Co=256 
+"endif
 
 "
 "-------------------------------------------------------------------------------
@@ -230,8 +239,9 @@ autocmd FileType c,cpp,java,uefi,vfr,uni,python autocmd BufWritePre <buffer> :%s
 autocmd BufWritePost *.py call Flake8()
 autocmd FileType python map <buffer> <F7> :call Flake8()<CR>
 
-:highlight Pmenu    ctermbg=darkgray
-:highlight PmenuSel ctermbg=brown
+colors jellybeans 
+" :highlight Pmenu    ctermbg=darkgray
+" :highlight PmenuSel ctermbg=brown
 
 "colors distinguished
 "colors tango 
