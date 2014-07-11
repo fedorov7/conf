@@ -54,9 +54,9 @@ set smartindent                 " smart autoindenting when starting a new line
 set autoread                    " read open files again when changed outside Vim
 set autowrite                   " write a modified buffer on each :next , ...
 set backspace=indent,eol,start  " backspacing over everything in insert mode
-set backup                      " keep a backup file
-set complete+=k                 " scan the files given with the 'dictionary' option
-"set history=50                  " keep 50 lines of command line history
+set nobackup                    " keep a backup file
+"set complete+=k                " scan the files given with the 'dictionary' option
+"set history=50                 " keep 50 lines of command line history
 set hlsearch                    " highlight the last used search pattern
 set incsearch                   " do incremental searching
 "set incsearch ignorecase hlsearch
@@ -66,7 +66,7 @@ set wrap                        " wrap lines
 set popt=left:8pc,right:3pc     " print options
 set ruler                       " show the cursor position all the time
 set showcmd                     " display incomplete commands
-"set visualbell                  " visual bell instead of beeping
+"set visualbell                 " visual bell instead of beeping
 set wildignore=*.bak,*.o,*.e,*~ " wildmenu: ignore these extensions
 set wildmenu                    " command-line completion in an enhanced mode
 set expandtab 			            " tabs are replaced with spacing
@@ -94,6 +94,12 @@ inoremap { {}<Left>
 vnoremap ( s()<Esc>P<Right>%
 vnoremap [ s[]<Esc>P<Right>%
 vnoremap { s{}<Esc>P<Right>%
+
+"-------------------------------------------------------------------------------
+" System clipboard support
+"-------------------------------------------------------------------------------
+vmap <C-c> "+y<CR>
+nmap <C-v> "+p<CR>
 
 "
 "-------------------------------------------------------------------------------
@@ -232,7 +238,6 @@ if has("cscope")
 
 endif
 
-" au BufEnter *.py setf python
 autocmd BufNewFile, BufRead *.py set ft=python
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
 autocmd FileType c,cpp,java,uefi,vfr,uni,python autocmd BufWritePre <buffer> :%s/\s\+$//e
