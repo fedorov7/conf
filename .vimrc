@@ -5,13 +5,13 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Plugin 'gmarik/Vundle.vim'
 "
 " My bundles here:
 "
 Plugin 'scrooloose/nerdtree'
-Plugin 'Lokaltog/powerline',  {'rtp':  'powerline/bindings/vim'}
+" Plugin 'Lokaltog/powerline',  {'rtp':  'powerline/bindings/vim'}
 Plugin 'davidhalter/jedi-vim'
 Plugin 'vim-flake8'
 Plugin 'tpope/vim-fugitive'
@@ -23,6 +23,8 @@ Plugin 'godlygeek/tabular'
 " Plugin 'plasticboy/vim-markdown'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'fidian/hexmode.git'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'bling/vim-airline'
 
 call vundle#end()
 filetype plugin indent on     " required!
@@ -37,10 +39,12 @@ filetype plugin indent on     " required!
 " NOTE: comments after Bundle commands are not allowed.
 "
 
+let g:airline_powerline_fonts = 1
+
 "-------------------------------------------------------------------------------
 " Switch syntax highlighting on.
 "-------------------------------------------------------------------------------
-syntax    on            
+syntax    on
 "
 " Using a backupdir under UNIX/Linux: you may want to include a line similar to
 "   find  $HOME/.vim.backupdir -name "*" -type f -mtime +60 -exec rm -f {} \;
@@ -49,33 +53,85 @@ syntax    on
 "-------------------------------------------------------------------------------
 " Various settings
 "-------------------------------------------------------------------------------
-set autoindent                  " copy indent from current line
-set smartindent                 " smart autoindenting when starting a new line
 set autoread                    " read open files again when changed outside Vim
 set autowrite                   " write a modified buffer on each :next , ...
 set backspace=indent,eol,start  " backspacing over everything in insert mode
-set nobackup                    " keep a backup file
 "set complete+=k                " scan the files given with the 'dictionary' option
 "set history=50                 " keep 50 lines of command line history
 set hlsearch                    " highlight the last used search pattern
 set incsearch                   " do incremental searching
+set history=1000                " Store lots of :cmdline history
 "set incsearch ignorecase hlsearch
-set listchars=tab:>.,eol:\$     " strings to use in 'list' mode
+"set gcr=a:blinkon0             " Disable cursor blink
 set mouse=r                     " enable the use of the mouse
-set wrap                        " wrap lines
 set popt=left:8pc,right:3pc     " print options
 set ruler                       " show the cursor position all the time
 set showcmd                     " display incomplete commands
+set showmode                    " Show current mode down the bottom
 "set visualbell                 " visual bell instead of beeping
-set wildignore=*.bak,*.o,*.e,*~ " wildmenu: ignore these extensions
-set wildmenu                    " command-line completion in an enhanced mode
-set expandtab 			            " tabs are replaced with spacing
-set tabstop=2
+
+" This makes vim act like all other editors,  buffers can
+" exist in the background without being in a window.
+" http://items.sjbach.com/319/configuring-vim-right
+set hidden
+
+" Change leader to a comma because the backslash is too far away
+" That means all \x commands turn into ,x
+" The mapleader has to be set before vundle starts loading all
+" the plugins.
+let mapleader=","
+
+" ================ Indentation ======================
+set autoindent                  " copy indent from current line
+set smartindent                 " smart autoindenting when starting a new line
+set smarttab
 set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab                   " tabs are replaced with spacing
+
+" ================ Turn Off Swap Files ==============
+set noswapfile
+set nobackup
+set nowb
+
+" Display tabs and trailing spaces visually
+set list listchars=tab:\ \ ,trail:· " strings to use in 'list' mode
+
+set nowrap                      " Don't wrap lines
+set linebreak                   " Wrap lines at convenient points
+
+" ================ Folds ============================
+
+set foldmethod=indent           " fold based on indent
+set foldnestmax=3               " deepest fold is 3 levels
+set nofoldenable                " dont fold by default
+
+" ================ Completion =======================
+
+set wildmode=list:longest
+set wildmenu                    " enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore=*.o,*.obj,*~     " stuff to ignore when tab completing
+set wildignore+=*vim/backups*
+set wildignore+=*sass-cache*
+set wildignore+=*DS_Store*
+set wildignore+=vendor/rails/**
+set wildignore+=vendor/cache/**
+set wildignore+=*.gem
+set wildignore+=log/**
+set wildignore+=tmp/**
+set wildignore+=*.png,*.jpg,*.gif
+
+"
+" ================ Scrolling ========================
+
+set scrolloff=8         "Start scrolling when we're 8 lines away from margins
+set sidescrolloff=15
+set sidescroll=1
 
 " if $COLORTERM == 'gnome-terminal'
 set laststatus=2
-set t_Co=256 
+set t_Co=256
 "endif
 
 "
@@ -99,7 +155,7 @@ vnoremap { s{}<Esc>P<Right>%
 " System clipboard support
 "-------------------------------------------------------------------------------
 vmap <C-c> "+y<CR>
-nmap <C-v> "+p<CR>
+nmap <C-p> "+p<CR>
 
 "
 "-------------------------------------------------------------------------------
@@ -116,15 +172,15 @@ if has("cscope")
 
         " add any cscope database in current directory
         if filereadable("cscope.out")
-                cs add cscope.out  
-                " else add the database pointed to by environment variable 
+                cs add cscope.out
+                " else add the database pointed to by environment variable
         elseif $CSCOPE_DB != ""
                 cs add $CSCOPE_DB
         endif
 
         " show msg when any other cscope db added
-        set cscopeverbose 
- 
+        set cscopeverbose
+
         """"""""""""" My cscope/vim key mappings
         "
         " The following maps all invoke one of the following cscope search types:
@@ -161,17 +217,17 @@ if has("cscope")
         " To do the first type of search, hit 'CTRL-\', followed by one of the
         " cscope search types above (s,g,c,t,e,f,i,d).  The result of your cscope
         " search will be displayed in the current window.  You can use CTRL-T to
-        " go back to where you were before the search.  
+        " go back to where you were before the search.
         "
 
-        nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>	
-        nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>	
-        nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>	
-        nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>	
-        nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>	
-        nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>	
+        nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+        nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+        nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+        nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+        nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+        nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
         nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-        nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>	
+        nmap <C-\>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 
         " Using 'CTRL-spacebar' (intepreted as CTRL-@ by vim) then a search type
@@ -180,19 +236,19 @@ if has("cscope")
         "
         " (Note: earlier versions of vim may not have the :scs command, but it
         " can be simulated roughly via:
-        "    nmap <C-@>s <C-W><C-S> :cs find s <C-R>=expand("<cword>")<CR><CR>	
+        "    nmap <C-@>s <C-W><C-S> :cs find s <C-R>=expand("<cword>")<CR><CR>
 
-        nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>	
-        nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>	
-        nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>	
-        nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>	
-        nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>	
-        nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>	
-        nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
-        nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>	
+        nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+        nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+        nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+        nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+        nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+        nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+        nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+        nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
 
 
-        " Hitting CTRL-space *twice* before the search type does a vertical 
+        " Hitting CTRL-space *twice* before the search type does a vertical
         " split instead of a horizontal one (vim 6 and up only)
         "
         " (Note: you may wish to put a 'set splitright' in your .vimrc
@@ -203,8 +259,8 @@ if has("cscope")
         nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
         nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
         nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
-        nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>	
-        nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>	
+        nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+        nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
         nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
 
 
@@ -214,7 +270,7 @@ if has("cscope")
         " You may find that too short with the above typemaps.  If so, you should
         " either turn off mapping timeouts via 'notimeout'.
         "
-        "set notimeout 
+        "set notimeout
         "
         " Or, you can keep timeouts, by uncommenting the timeoutlen line below,
         " with your own personal favorite value (in milliseconds):
@@ -227,7 +283,7 @@ if has("cscope")
         " delays as vim waits for a keystroke after you hit ESC (it will be
         " waiting to see if the ESC is actually part of a key code like <F1>).
         "
-        "set ttimeout 
+        "set ttimeout
         "
         " personally, I find a tenth of a second to work well for key code
         " timeouts. If you experience problems and have a slow terminal or network
@@ -244,9 +300,9 @@ autocmd FileType c,cpp,java,uefi,vfr,uni,python autocmd BufWritePre <buffer> :%s
 autocmd BufWritePost *.py call Flake8()
 autocmd FileType python map <buffer> <F7> :call Flake8()<CR>
 
-colors jellybeans 
+colors jellybeans
 " :highlight Pmenu    ctermbg=darkgray
 " :highlight PmenuSel ctermbg=brown
 
 "colors distinguished
-"colors tango 
+"colors tango
