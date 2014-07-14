@@ -97,8 +97,7 @@ set nowb
 
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:· " strings to use in 'list' mode
-
-set nowrap                      " Don't wrap lines
+set wrap                      " Don't wrap lines
 set linebreak                   " Wrap lines at convenient points
 
 " ================ Folds ============================
