@@ -25,6 +25,10 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'fidian/hexmode.git'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'Shougo/vimshell.vim'
+Plugin 'Raimondi/delimitMate'
 
 call vundle#end()
 filetype plugin indent on     " required!
@@ -57,11 +61,10 @@ set autoread                    " read open files again when changed outside Vim
 set autowrite                   " write a modified buffer on each :next , ...
 set backspace=indent,eol,start  " backspacing over everything in insert mode
 "set complete+=k                " scan the files given with the 'dictionary' option
-"set history=50                 " keep 50 lines of command line history
 set hlsearch                    " highlight the last used search pattern
 set incsearch                   " do incremental searching
+"set history=50                 " keep 50 lines of command line history
 set history=1000                " Store lots of :cmdline history
-"set incsearch ignorecase hlsearch
 "set gcr=a:blinkon0             " Disable cursor blink
 set mouse=r                     " enable the use of the mouse
 set popt=left:8pc,right:3pc     " print options
@@ -69,6 +72,15 @@ set ruler                       " show the cursor position all the time
 set showcmd                     " display incomplete commands
 set showmode                    " Show current mode down the bottom
 "set visualbell                 " visual bell instead of beeping
+set nojoinspaces                " prevents inserting two spaces after punctuation on a join
+set lazyredraw                  " will not redraw the screen while running macros (goes faster)
+set virtualedit=block           " let cursor move past the last char in <C-V> mode
+set nostartofline               " avoid moving cursor to BOL when jumping around
+
+set cryptmethod=blowfish        " use (much) stronger blowfish encryption
+
+" don't select first item, follow typing in autocomplete
+" set completeopt=longest,menuone,preview
 
 " This makes vim act like all other editors,  buffers can
 " exist in the background without being in a window.
@@ -142,13 +154,13 @@ inoremap  ,  ,<Space>
 "-------------------------------------------------------------------------------
 " autocomplete parenthesis, brackets and braces
 "-------------------------------------------------------------------------------
-inoremap ( ()<Left>
-inoremap [ []<Left>
-inoremap { {}<Left>
-"
-vnoremap ( s()<Esc>P<Right>%
-vnoremap [ s[]<Esc>P<Right>%
-vnoremap { s{}<Esc>P<Right>%
+" inoremap ( ()<Left>
+" inoremap [ []<Left>
+" inoremap { {}<Left>
+" "
+" vnoremap ( s()<Esc>P<Right>%
+" vnoremap [ s[]<Esc>P<Right>%
+" vnoremap { s{}<Esc>P<Right>%
 
 "-------------------------------------------------------------------------------
 " System clipboard support
