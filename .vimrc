@@ -29,6 +29,7 @@ Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
 Plugin 'Raimondi/delimitMate'
+Plugin 'tpope/vim-abolish.git'
 
 call vundle#end()
 filetype plugin indent on     " required!
