@@ -329,6 +329,8 @@ autocmd FileType c,cpp,java,uefi,vfr,uni,python autocmd BufWritePre <buffer> :%s
 autocmd BufWritePost *.py call Flake8()
 autocmd FileType python map <buffer> <F7> :call Flake8()<CR>
 
+set fillchars=vert:\│
+
 colors jellybeans
 " :highlight Pmenu    ctermbg=darkgray
 " :highlight PmenuSel ctermbg=brown
