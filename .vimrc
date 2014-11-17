@@ -33,6 +33,9 @@ Plugin 'tpope/vim-abolish.git'
 Plugin 'ervandew/supertab'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
+" Plugin 'mhinz/vim-startify'
+Plugin 'vim-scripts/Conque-GDB'
+Plugin 'chikamichi/mediawiki.vim'
 
 call vundle#end()
 filetype plugin indent on     " required!
