@@ -12,7 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 "
 Plugin 'scrooloose/nerdtree'
 " Plugin 'Lokaltog/powerline',  {'rtp':  'powerline/bindings/vim'}
-Plugin 'davidhalter/jedi-vim'
+" Plugin 'davidhalter/jedi-vim'
 Plugin 'vim-flake8'
 Plugin 'tpope/vim-fugitive'
 Plugin 'fedorov7/vim-uefi'
@@ -25,7 +25,7 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'fidian/hexmode.git'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
-Plugin 'terryma/vim-multiple-cursors'
+" Plugin 'terryma/vim-multiple-cursors'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
 Plugin 'Raimondi/delimitMate'
@@ -35,7 +35,11 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " Plugin 'mhinz/vim-startify'
 Plugin 'vim-scripts/Conque-GDB'
-Plugin 'chikamichi/mediawiki.vim'
+" Plugin 'chikamichi/mediawiki.vim'
+Plugin 'gregsexton/gitv'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'lilydjwg/colorizer'
+" Plugin 'majutsushi/tagbar'
 
 call vundle#end()
 filetype plugin indent on     " required!
@@ -49,6 +53,27 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
 "
+let g:rbpt_colorpairs = [
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['darkred',     'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['red',         'firebrick3'],
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['brown',       'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ]
+
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
 
 " make YCM compatible with UltiSnips (using supertab)
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -333,9 +358,14 @@ endif
 
 autocmd BufNewFile, BufRead *.py set ft=python
 autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
-autocmd FileType c,cpp,java,uefi,vfr,uni,python autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType * autocmd BufWritePre <buffer> :%s/\s\+$//e
 autocmd BufWritePost *.py call Flake8()
 autocmd FileType python map <buffer> <F7> :call Flake8()<CR>
+
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 set fillchars=vert:\│
 
