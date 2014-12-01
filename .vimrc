@@ -232,6 +232,9 @@ if has("cscope")
         " if you want the reverse search order.
         "set csto=1
 
+        " show msg when any other cscope db added
+        set nocscopeverbose
+
         " add any cscope database in current directory
         if filereadable("cscope.out")
                 cs add cscope.out
@@ -239,9 +242,6 @@ if has("cscope")
         elseif $CSCOPE_DB != ""
                 cs add $CSCOPE_DB
         endif
-
-        " show msg when any other cscope db added
-        set cscopeverbose
 
         """"""""""""" My cscope/vim key mappings
         "
@@ -356,18 +356,35 @@ if has("cscope")
 
 endif
 
-autocmd BufNewFile, BufRead *.py set ft=python
-autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
-autocmd FileType * autocmd BufWritePre <buffer> :%s/\s\+$//e
-autocmd BufWritePost *.py call Flake8()
-autocmd FileType python map <buffer> <F7> :call Flake8()<CR>
+augroup python_improvements
+    autocmd BufNewFile,BufRead *.py set ft=python
+    autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+    autocmd FileType python map <buffer> <F7> :call Flake8()<CR>
+    autocmd BufWritePost *.py call Flake8()
+augroup END
 
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+augroup rainbow_parentheses
+    autocmd VimEnter * RainbowParenthesesToggle
+    autocmd Syntax * RainbowParenthesesLoadRound
+    autocmd Syntax * RainbowParenthesesLoadSquare
+    autocmd Syntax * RainbowParenthesesLoadBraces
+augroup END
+
+augroup clean_trail_spaces
+  " remove spaces
+  autocmd FileType * autocmd BufWritePre <buffer> :%s/\s\+$//e
+  " replace tabs
+  autocmd FileType * autocmd BufWritePre <buffer> :%s/\t/\ \ /e
+augroup END
 
 set fillchars=vert:\│
+
+augroup reload_vimrc
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
+
+nmap <F5> :so $MYVIMRC <CR>:RainbowParenthesesActivate<CR>
 
 colors jellybeans
 " :highlight Pmenu    ctermbg=darkgray
