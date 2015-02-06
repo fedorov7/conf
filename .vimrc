@@ -39,6 +39,7 @@ Plugin 'vim-scripts/Conque-GDB'
 Plugin 'gregsexton/gitv'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'lilydjwg/colorizer'
+Plugin 'editorconfig/editorconfig-vim'
 " Plugin 'majutsushi/tagbar'
 
 call vundle#end()
@@ -385,6 +386,8 @@ augroup reload_vimrc
 augroup END
 
 nmap <F5> :so $MYVIMRC <CR>:RainbowParenthesesActivate<CR>
+
+nmap <F4> :%s:\(DEBUG\s*((\_.\=\s*EFI_D_\)\(\w\+\),\s\=\("\p\+"\))):DBG_\2 (\3):c
 
 colors jellybeans
 " :highlight Pmenu    ctermbg=darkgray
