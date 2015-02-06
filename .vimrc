@@ -375,7 +375,7 @@ augroup clean_trail_spaces
   " remove spaces
   autocmd FileType * autocmd BufWritePre <buffer> :%s/\s\+$//e
   " replace tabs
-  autocmd FileType * autocmd BufWritePre <buffer> :%s/\t/\ \ /e
+  " autocmd FileType * autocmd BufWritePre <buffer> :%s/\t/\ \ /e
 augroup END
 
 set fillchars=vert:\│
@@ -385,9 +385,10 @@ augroup reload_vimrc
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
 
-nmap <F5> :so $MYVIMRC <CR>:RainbowParenthesesActivate<CR>
-
 nmap <F4> :%s:\(DEBUG\s*((\_.\=\s*EFI_D_\)\(\w\+\),\s\=\("\p\+"\))):DBG_\2 (\3):c
+nmap <F5> :so $MYVIMRC <CR>:RainbowParenthesesActivate<CR>
+" replace tabs
+nmap <F6> :%s/\t/\ \ /e
 
 colors jellybeans
 " :highlight Pmenu    ctermbg=darkgray
