@@ -39,8 +39,9 @@ Plugin 'vim-scripts/Conque-GDB'
 Plugin 'gregsexton/gitv'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'lilydjwg/colorizer'
-Plugin 'editorconfig/editorconfig-vim'
+" Plugin 'editorconfig/editorconfig-vim'
 " Plugin 'majutsushi/tagbar'
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 
 call vundle#end()
 filetype plugin indent on     " required!
