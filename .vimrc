@@ -161,7 +161,7 @@ set nobackup
 set nowb
 
 " Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:· " strings to use in 'list' mode
+set list listchars=tab:\ \ ,trail:. " strings to use in 'list' mode
 set wrap                      " Don't wrap lines
 set linebreak                   " Wrap lines at convenient points
 
@@ -379,7 +379,7 @@ augroup clean_trail_spaces
   " autocmd FileType * autocmd BufWritePre <buffer> :%s/\t/\ \ /e
 augroup END
 
-set fillchars=vert:\│
+set fillchars=vert:\|
 
 augroup reload_vimrc
     autocmd!
@@ -390,6 +390,8 @@ nmap <F4> :%s:\(DEBUG\s*((\_.\=\s*EFI_D_\)\(\w\+\),\s\=\("\p\+"\))):DBG_\2 (\3):
 nmap <F5> :so $MYVIMRC <CR>:RainbowParenthesesActivate<CR>
 " replace tabs
 nmap <F6> :%s/\t/\ \ /e
+
+let g:NERDTreeDirArrows=0
 
 colors jellybeans
 " :highlight Pmenu    ctermbg=darkgray
