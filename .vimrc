@@ -152,7 +152,7 @@ set smartindent                 " smart autoindenting when starting a new line
 set smarttab
 set shiftwidth=2
 set softtabstop=2
-set tabstop=2
+set tabstop=8
 set expandtab                   " tabs are replaced with spacing
 
 " ================ Turn Off Swap Files ==============
