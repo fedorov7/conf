@@ -161,7 +161,11 @@ set nobackup
 set nowb
 
 " Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:. " strings to use in 'list' mode
+if has("X11")
+  set list listchars=tab:\ \ ,trail:· " strings to use in 'list' mode
+else
+  set list listchars=tab:\ \ ,trail:. " strings to use in 'list' mode
+endif
 set wrap                      " Don't wrap lines
 set linebreak                   " Wrap lines at convenient points
 
@@ -379,7 +383,11 @@ augroup clean_trail_spaces
   " autocmd FileType * autocmd BufWritePre <buffer> :%s/\t/\ \ /e
 augroup END
 
-set fillchars=vert:\|
+if has("X11")
+  set fillchars=vert:\│
+else
+  set fillchars=vert:\|
+endif
 
 augroup reload_vimrc
     autocmd!
@@ -391,7 +399,11 @@ nmap <F5> :so $MYVIMRC <CR>:RainbowParenthesesActivate<CR>
 " replace tabs
 nmap <F6> :%s/\t/\ \ /e
 
-let g:NERDTreeDirArrows=0
+if has("X11")
+  let g:NERDTreeDirArrows=1
+else
+  let g:NERDTreeDirArrows=0
+endif
 
 colors jellybeans
 " :highlight Pmenu    ctermbg=darkgray
