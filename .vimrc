@@ -42,6 +42,7 @@ Plugin 'lilydjwg/colorizer'
 " Plugin 'editorconfig/editorconfig-vim'
 " Plugin 'majutsushi/tagbar'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+Plugin 'fedorov7/ksslint'
 
 call vundle#end()
 filetype plugin indent on     " required!
