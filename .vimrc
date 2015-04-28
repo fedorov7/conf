@@ -395,10 +395,6 @@ augroup reload_vimrc
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
 
-nmap <F5> :so $MYVIMRC <CR>:RainbowParenthesesActivate<CR>
-" replace tabs
-nmap <F6> :%s/\t/\ \ /e
-
 if has("X11")
   let g:NERDTreeDirArrows=1
 else
