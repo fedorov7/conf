@@ -43,6 +43,8 @@ Plugin 'lilydjwg/colorizer'
 " Plugin 'majutsushi/tagbar'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plugin 'fedorov7/ksslint'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'kana/vim-operator-user'
 
 call vundle#end()
 filetype plugin indent on     " required!
@@ -403,6 +405,9 @@ if has("X11")
 else
   let g:NERDTreeDirArrows=0
 endif
+
+" Use .clang-format config for style
+let g:clang_format#detect_style_file=1
 
 colors jellybeans
 " :highlight Pmenu    ctermbg=darkgray
