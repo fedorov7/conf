@@ -45,6 +45,7 @@ Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 Plugin 'fedorov7/ksslint'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'kana/vim-operator-user'
+" Plugin 'jeaye/color_coded'
 
 call vundle#end()
 filetype plugin indent on     " required!
@@ -82,11 +83,13 @@ let g:rbpt_loadcmd_toggle = 0
 
 " make YCM compatible with UltiSnips (using supertab)
 
-let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_auto_trigger = 0
-let g:ycm_enable_diagnostic_highlighting = 0
+" let g:ycm_enable_diagnostic_signs = 0
+" let g:ycm_enable_diagnostic_highlighting = 0
 let g:ycm_complete_in_comments = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
@@ -382,12 +385,12 @@ augroup rainbow_parentheses
     autocmd Syntax * RainbowParenthesesLoadBraces
 augroup END
 
-augroup clean_trail_spaces
+"augroup clean_trail_spaces
   " remove spaces
-  autocmd FileType * autocmd BufWritePre <buffer> :%s/\s\+$//e
+  " autocmd FileType * autocmd BufWritePre <buffer> :%s/\s\+$//e
   " replace tabs
   " autocmd FileType * autocmd BufWritePre <buffer> :%s/\t/\ \ /e
-augroup END
+" augroup END
 
 if has("X11")
   set fillchars=vert:\│
