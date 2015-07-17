@@ -46,6 +46,7 @@ Plugin 'fedorov7/ksslint'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'kana/vim-operator-user'
 " Plugin 'jeaye/color_coded'
+Plugin 'fatih/vim-go'
 
 call vundle#end()
 filetype plugin indent on     " required!
@@ -59,6 +60,11 @@ filetype plugin indent on     " required!
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
 "
+
+" vim-go plugin options
+let g:go_fmt_options = '-tabs=false -tabwidth=4'
+
+
 let g:rbpt_colorpairs = [
     \ ['darkmagenta', 'DarkOrchid3'],
     \ ['darkred',     'firebrick3'],
