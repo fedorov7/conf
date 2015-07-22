@@ -18,7 +18,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'fedorov7/vim-uefi'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'nathanaelkane/vim-indent-guides'
+" Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'godlygeek/tabular'
 " Plugin 'plasticboy/vim-markdown'
 Plugin 'nanotech/jellybeans.vim'
@@ -34,7 +34,7 @@ Plugin 'ervandew/supertab'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 " Plugin 'mhinz/vim-startify'
-Plugin 'vim-scripts/Conque-GDB'
+" Plugin 'vim-scripts/Conque-GDB'
 " Plugin 'chikamichi/mediawiki.vim'
 Plugin 'gregsexton/gitv'
 Plugin 'kien/rainbow_parentheses.vim'
@@ -62,9 +62,38 @@ filetype plugin indent on     " required!
 "
 
 " vim-go plugin options
-let g:go_fmt_options = '-tabs=false -tabwidth=4'
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
+" vim-go mappings
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
 
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>e <Plug>(go-rename)
+
+" Only trailing spaces visually for go
+autocmd FileType go set nolist
+
+" let g:go_fmt_command = "goimports"
+" let g:go_fmt_options = '-w'
+" let g:go_fmt_autosave = 0
+
+" color paranthesis
 let g:rbpt_colorpairs = [
     \ ['darkmagenta', 'DarkOrchid3'],
     \ ['darkred',     'firebrick3'],
@@ -92,7 +121,7 @@ let g:rbpt_loadcmd_toggle = 0
 " let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-" let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_auto_trigger = 0
 " let g:ycm_enable_diagnostic_signs = 0
 " let g:ycm_enable_diagnostic_highlighting = 0
@@ -181,6 +210,7 @@ if has("X11")
 else
   set list listchars=tab:\ \ ,trail:. " strings to use in 'list' mode
 endif
+
 set wrap                      " Don't wrap lines
 set linebreak                   " Wrap lines at convenient points
 
