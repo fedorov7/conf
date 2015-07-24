@@ -10,43 +10,51 @@ Plugin 'gmarik/Vundle.vim'
 "
 " My bundles here:
 "
-Plugin 'scrooloose/nerdtree'
-" Plugin 'Lokaltog/powerline',  {'rtp':  'powerline/bindings/vim'}
-" Plugin 'davidhalter/jedi-vim'
-Plugin 'vim-flake8'
-Plugin 'tpope/vim-fugitive'
-Plugin 'fedorov7/vim-uefi'
-Plugin 'scrooloose/syntastic'
+" autocompletion
+Plugin 'SirVer/ultisnips'
+Plugin 'ervandew/supertab'
 Plugin 'Valloric/YouCompleteMe'
-" Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'godlygeek/tabular'
-" Plugin 'plasticboy/vim-markdown'
-Plugin 'nanotech/jellybeans.vim'
+" helpers
 Plugin 'fidian/hexmode.git'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'bling/vim-airline'
-" Plugin 'terryma/vim-multiple-cursors'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'lilydjwg/colorizer'
+" git support
+Plugin 'gregsexton/gitv'
+Plugin 'tpope/vim-fugitive'
+" coding
+Plugin 'tpope/vim-abolish.git'
+Plugin 'Raimondi/delimitMate'
+Plugin 'godlygeek/tabular'
+Plugin 'honza/vim-snippets'
+Plugin 'fedorov7/vim-uefi'
+Plugin 'fedorov7/ksslint'
+Plugin 'vim-flake8'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'fatih/vim-go'
+" colorscheme
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'altercation/vim-colors-solarized'
+" shell
 Plugin 'Shougo/vimproc.vim'
 Plugin 'Shougo/vimshell.vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'tpope/vim-abolish.git'
-Plugin 'ervandew/supertab'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plugin 'kana/vim-operator-user'
+
+Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
+
 " Plugin 'mhinz/vim-startify'
 " Plugin 'vim-scripts/Conque-GDB'
 " Plugin 'chikamichi/mediawiki.vim'
-Plugin 'gregsexton/gitv'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'lilydjwg/colorizer'
+" Plugin 'Lokaltog/powerline',  {'rtp':  'powerline/bindings/vim'}
+" Plugin 'davidhalter/jedi-vim'
+" Plugin 'nathanaelkane/vim-indent-guides'
+" Plugin 'plasticboy/vim-markdown'
+" Plugin 'terryma/vim-multiple-cursors'
 " Plugin 'editorconfig/editorconfig-vim'
 " Plugin 'majutsushi/tagbar'
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
-Plugin 'fedorov7/ksslint'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'kana/vim-operator-user'
 " Plugin 'jeaye/color_coded'
-Plugin 'fatih/vim-go'
 
 call vundle#end()
 filetype plugin indent on     " required!
@@ -116,20 +124,23 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 
+let g:airline_powerline_fonts = 1
+
 " make YCM compatible with UltiSnips (using supertab)
 
 " let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:ycm_key_invoke_completion = '<C-Space>'
-let g:ycm_auto_trigger = 0
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" let g:ycm_key_invoke_completion = '<C-Space>'
+" let g:ycm_auto_trigger = 0
 " let g:ycm_enable_diagnostic_signs = 0
 " let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_complete_in_comments = 1
-let g:ycm_seed_identifiers_with_syntax = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:SuperTabDefaultCompletionType = '<C-n>'
+" let g:ycm_complete_in_comments = 1
+" let g:ycm_seed_identifiers_with_syntax = 1
+" let g:ycm_collect_identifiers_from_comments_and_strings = 1
+" let g:ycm_collect_identifiers_from_tags_files = 1
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -137,10 +148,12 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 " let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+" let g:UltiSnipsJumpForwardTrigger="<c-j>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-let g:airline_powerline_fonts = 1
+let g:ycm_autoclose_preview_window_after_completion=1
+
+au FileType python nnoremap <C-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 "-------------------------------------------------------------------------------
 " Switch syntax highlighting on.
