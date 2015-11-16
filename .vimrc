@@ -77,10 +77,10 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 " vim-go mappings
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>r <Plug>(go-run)
+au FileType go nmap <Leader>b <Plug>(go-build)
+au FileType go nmap <Leader>t <Plug>(go-test)
+au FileType go nmap <Leader>c <Plug>(go-coverage)
 
 au FileType go nmap <Leader>ds <Plug>(go-def-split)
 au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
@@ -153,7 +153,15 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 
 let g:ycm_autoclose_preview_window_after_completion=1
 
-au FileType python nnoremap <C-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" Ycm bindings
+au FileType c,cpp,python nnoremap <Leader>h :YcmCompleter GoToDeclaration<CR>
+au FileType c,cpp,python nnoremap <Leader>d :YcmCompleter GoToDefinition<CR>
+au FileType c,cpp,python nnoremap <Leader>g :YcmCompleter GoTo<CR>
+au FileType c,cpp nnoremap <Leader>i :YcmCompleter GoToImprecise<CR>
+au FileType c,cpp nnoremap <Leader>p :YcmCompleter GetParent<CR>
+au FileType c,cpp nnoremap <Leader>cl :YcmCompleter ClearCompilationFlagCache<CR>
+au FileType c,cpp nnoremap <F2> :YcmCompleter GetType<CR>
+au FileType c,cpp nnoremap <F3> :YcmCompleter FixIt<CR>
 
 "-------------------------------------------------------------------------------
 " Switch syntax highlighting on.
