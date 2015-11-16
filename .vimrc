@@ -137,10 +137,12 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 " let g:ycm_auto_trigger = 0
 " let g:ycm_enable_diagnostic_signs = 0
 " let g:ycm_enable_diagnostic_highlighting = 0
-" let g:ycm_complete_in_comments = 1
-" let g:ycm_seed_identifiers_with_syntax = 1
-" let g:ycm_collect_identifiers_from_comments_and_strings = 1
-" let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_complete_in_comments = 1
+let g:ycm_complete_in_strings = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+
+autocmd FileType gitcommit let g:ycm_collect_identifiers_from_comments_and_strings = 1
+autocmd FileType gitcommit let g:ycm_collect_identifiers_from_tags_files = 1
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -162,6 +164,8 @@ au FileType c,cpp nnoremap <Leader>p :YcmCompleter GetParent<CR>
 au FileType c,cpp nnoremap <Leader>cl :YcmCompleter ClearCompilationFlagCache<CR>
 au FileType c,cpp nnoremap <F2> :YcmCompleter GetType<CR>
 au FileType c,cpp nnoremap <F3> :YcmCompleter FixIt<CR>
+au FileType c,cpp nnoremap <F8> :YcmShowDetailedDiagnostic<CR>
+au FileType c,cpp nnoremap <F9> :YcmDiags<CR>
 
 "-------------------------------------------------------------------------------
 " Switch syntax highlighting on.
