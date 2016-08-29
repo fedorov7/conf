@@ -44,6 +44,8 @@ Plugin 'kana/vim-operator-user'
 
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 
+Plugin 'elzr/vim-json'
+
 " Plugin 'mhinz/vim-startify'
 " Plugin 'vim-scripts/Conque-GDB'
 " Plugin 'chikamichi/mediawiki.vim'
@@ -224,6 +226,22 @@ set softtabstop=2
 set tabstop=8
 set expandtab                   " tabs are replaced with spacing
 
+
+function TabToggle()
+  if &expandtab
+    set shiftwidth=8
+    set softtabstop=0
+    set noexpandtab
+  else
+    set shiftwidth=2
+    set softtabstop=2
+    set expandtab
+  endif
+endfunction
+
+nmap <F5> mz:execute TabToggle()<CR>
+
+
 " ================ Turn Off Swap Files ==============
 set noswapfile
 set nobackup
@@ -241,7 +259,7 @@ set linebreak                   " Wrap lines at convenient points
 
 " ================ Folds ============================
 
-set foldmethod=indent           " fold based on indent
+set foldmethod=marker           " fold based on marker
 set foldnestmax=3               " deepest fold is 3 levels
 set nofoldenable                " dont fold by default
 
