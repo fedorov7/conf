@@ -45,6 +45,11 @@ Plugin 'kana/vim-operator-user'
 Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
 
 Plugin 'elzr/vim-json'
+Plugin 'kergoth/vim-bitbake'
+
+Plugin 'junegunn/fzf',  { 'dir': '~/.fzf',  'do': './install --all' }
+
+Plugin 'mbbill/undotree'
 
 " Plugin 'mhinz/vim-startify'
 " Plugin 'vim-scripts/Conque-GDB'
@@ -449,6 +454,13 @@ if has("cscope")
         "set ttimeoutlen=100
 
 endif
+
+if has("persistent_undo")
+    set undodir=~/.undodir/
+    set undofile
+endif
+
+nnoremap <F12> :UndotreeToggle<CR>
 
 augroup python_improvements
     autocmd BufNewFile,BufRead *.py set ft=python
