@@ -51,6 +51,8 @@ Plugin 'junegunn/fzf',  { 'dir': '~/.fzf',  'do': './install --all' }
 
 Plugin 'mbbill/undotree'
 
+Plugin 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+
 " Plugin 'mhinz/vim-startify'
 " Plugin 'vim-scripts/Conque-GDB'
 " Plugin 'chikamichi/mediawiki.vim'
