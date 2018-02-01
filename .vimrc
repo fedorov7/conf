@@ -18,7 +18,9 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'fidian/hexmode.git'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
+" Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
+
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'lilydjwg/colorizer'
 " git support
@@ -53,6 +55,13 @@ Plugin 'mbbill/undotree'
 
 Plugin 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
 
+Plugin 'sheerun/vim-polyglot'
+
+Plugin 'vim-scripts/DoxygenToolkit.vim'
+
+Plugin 'ryanoasis/vim-devicons'
+
+" Plugin 'dracula/vim'
 " Plugin 'mhinz/vim-startify'
 " Plugin 'vim-scripts/Conque-GDB'
 " Plugin 'chikamichi/mediawiki.vim'
