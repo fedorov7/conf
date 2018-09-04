@@ -13,54 +13,44 @@ Plugin 'gmarik/Vundle.vim'
 " autocompletion
 Plugin 'SirVer/ultisnips'
 Plugin 'ervandew/supertab'
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'honza/vim-snippets'
+Plugin 'justmao945/vim-clang'
 " helpers
 Plugin 'fidian/hexmode.git'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
-" Plugin 'scrooloose/syntastic'
 Plugin 'w0rp/ale'
-
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'lilydjwg/colorizer'
+"Plugin 'junegunn/fzf',  { 'dir': '~/.fzf',  'do': './install --all' }
+"Plugin 'mbbill/undotree'
+"Plugin 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'dyng/ctrlsf.vim'
 " git support
 Plugin 'gregsexton/gitv'
 Plugin 'tpope/vim-fugitive'
 " coding
 Plugin 'tpope/vim-abolish.git'
-Plugin 'Raimondi/delimitMate'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'godlygeek/tabular'
-Plugin 'honza/vim-snippets'
 Plugin 'fedorov7/vim-uefi'
 Plugin 'fedorov7/ksslint'
 Plugin 'vim-flake8'
 Plugin 'rhysd/vim-clang-format'
 Plugin 'fatih/vim-go'
-" colorscheme
+" colors
+Plugin 'lilydjwg/colorizer'
+Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'nanotech/jellybeans.vim'
-Plugin 'altercation/vim-colors-solarized'
-" shell
-Plugin 'Shougo/vimproc.vim'
-Plugin 'Shougo/vimshell.vim'
-Plugin 'kana/vim-operator-user'
-
-Plugin 'docker/docker' , {'rtp': '/contrib/syntax/vim/'}
-
+"Plugin 'sheerun/vim-polyglot'
+Plugin 'ekalinin/Dockerfile.vim'
 Plugin 'elzr/vim-json'
 Plugin 'kergoth/vim-bitbake'
-
-Plugin 'junegunn/fzf',  { 'dir': '~/.fzf',  'do': './install --all' }
-
-Plugin 'mbbill/undotree'
-
-Plugin 'mhinz/vim-grepper', { 'on': ['Grepper', '<plug>(GrepperOperator)'] }
-
-Plugin 'sheerun/vim-polyglot'
-
-Plugin 'vim-scripts/DoxygenToolkit.vim'
-
+Plugin 'pearofducks/ansible-vim'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'vimwiki/vimwiki'
 
+" Plugin 'scrooloose/syntastic'
+" Plugin 'Valloric/YouCompleteMe'
 " Plugin 'dracula/vim'
 " Plugin 'mhinz/vim-startify'
 " Plugin 'vim-scripts/Conque-GDB'
@@ -69,7 +59,6 @@ Plugin 'ryanoasis/vim-devicons'
 " Plugin 'davidhalter/jedi-vim'
 " Plugin 'nathanaelkane/vim-indent-guides'
 " Plugin 'plasticboy/vim-markdown'
-" Plugin 'terryma/vim-multiple-cursors'
 " Plugin 'editorconfig/editorconfig-vim'
 " Plugin 'majutsushi/tagbar'
 " Plugin 'jeaye/color_coded'
@@ -142,25 +131,26 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 
+set encoding=utf8
 let g:airline_powerline_fonts = 1
 
 " make YCM compatible with UltiSnips (using supertab)
 
 " let g:ycm_show_diagnostics_ui = 0
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " let g:ycm_key_invoke_completion = '<C-Space>'
 " let g:ycm_auto_trigger = 0
 " let g:ycm_enable_diagnostic_signs = 0
 " let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_complete_in_comments = 1
-let g:ycm_complete_in_strings = 1
-let g:ycm_seed_identifiers_with_syntax = 1
+" let g:ycm_complete_in_comments = 1
+" let g:ycm_complete_in_strings = 1
+" let g:ycm_seed_identifiers_with_syntax = 1
 
-autocmd FileType gitcommit let g:ycm_collect_identifiers_from_comments_and_strings = 1
-autocmd FileType gitcommit let g:ycm_collect_identifiers_from_tags_files = 1
+" autocmd FileType gitcommit let g:ycm_collect_identifiers_from_comments_and_strings = 1
+" autocmd FileType gitcommit let g:ycm_collect_identifiers_from_tags_files = 1
 
 " better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -171,19 +161,19 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 " let g:UltiSnipsJumpForwardTrigger="<c-j>"
 " let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-let g:ycm_autoclose_preview_window_after_completion=1
+" let g:ycm_autoclose_preview_window_after_completion=1
 
 " Ycm bindings
-au FileType c,cpp,python nnoremap <Leader>h :YcmCompleter GoToDeclaration<CR>
-au FileType c,cpp,python nnoremap <Leader>d :YcmCompleter GoToDefinition<CR>
-au FileType c,cpp,python nnoremap <Leader>g :YcmCompleter GoTo<CR>
-au FileType c,cpp nnoremap <Leader>i :YcmCompleter GoToImprecise<CR>
-au FileType c,cpp nnoremap <Leader>p :YcmCompleter GetParent<CR>
-au FileType c,cpp nnoremap <Leader>cl :YcmCompleter ClearCompilationFlagCache<CR>
-au FileType c,cpp nnoremap <F2> :YcmCompleter GetType<CR>
-au FileType c,cpp nnoremap <F3> :YcmCompleter FixIt<CR>
-au FileType c,cpp nnoremap <F8> :YcmShowDetailedDiagnostic<CR>
-au FileType c,cpp nnoremap <F9> :YcmDiags<CR>
+" au FileType c,cpp,python nnoremap <Leader>h :YcmCompleter GoToDeclaration<CR>
+" au FileType c,cpp,python nnoremap <Leader>d :YcmCompleter GoToDefinition<CR>
+" au FileType c,cpp,python nnoremap <Leader>g :YcmCompleter GoTo<CR>
+" au FileType c,cpp nnoremap <Leader>i :YcmCompleter GoToImprecise<CR>
+" au FileType c,cpp nnoremap <Leader>p :YcmCompleter GetParent<CR>
+" au FileType c,cpp nnoremap <Leader>cl :YcmCompleter ClearCompilationFlagCache<CR>
+" au FileType c,cpp nnoremap <F2> :YcmCompleter GetType<CR>
+" au FileType c,cpp nnoremap <F3> :YcmCompleter FixIt<CR>
+" au FileType c,cpp nnoremap <F8> :YcmShowDetailedDiagnostic<CR>
+" au FileType c,cpp nnoremap <F9> :YcmDiags<CR>
 
 "-------------------------------------------------------------------------------
 " Switch syntax highlighting on.
@@ -242,8 +232,7 @@ set softtabstop=2
 set tabstop=8
 set expandtab                   " tabs are replaced with spacing
 
-
-function TabToggle()
+function! TabToggle()
   if &expandtab
     set shiftwidth=8
     set softtabstop=0
@@ -301,33 +290,34 @@ set scrolloff=8         "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
-" if $COLORTERM == 'gnome-terminal'
 set laststatus=2
 set t_Co=256
-"endif
+
+" set more! " very tricky for long list command output
 
 "
 "-------------------------------------------------------------------------------
 " comma always followed by a space
 "-------------------------------------------------------------------------------
 inoremap  ,  ,<Space>
-"
-"-------------------------------------------------------------------------------
-" autocomplete parenthesis, brackets and braces
-"-------------------------------------------------------------------------------
-" inoremap ( ()<Left>
-" inoremap [ []<Left>
-" inoremap { {}<Left>
-" "
-" vnoremap ( s()<Esc>P<Right>%
-" vnoremap [ s[]<Esc>P<Right>%
-" vnoremap { s{}<Esc>P<Right>%
 
 "-------------------------------------------------------------------------------
 " System clipboard support
 "-------------------------------------------------------------------------------
 vmap <C-c> "+y<CR>
 nmap <C-p> "+p<CR>
+
+"-------------------------------------------------------------------------------
+" CtrlSF plugin key bindings
+"-------------------------------------------------------------------------------
+nmap     <C-F>f <Plug>CtrlSFPrompt
+vmap     <C-F>f <Plug>CtrlSFVwordPath
+vmap     <C-F>F <Plug>CtrlSFVwordExec
+nmap     <C-F>n <Plug>CtrlSFCwordPath
+nmap     <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 "
 "-------------------------------------------------------------------------------
@@ -466,18 +456,11 @@ if has("cscope")
 
 endif
 
-if has("persistent_undo")
-    set undodir=~/.undodir/
-    set undofile
-endif
-
-nnoremap <F12> :UndotreeToggle<CR>
-
 augroup python_improvements
     autocmd BufNewFile,BufRead *.py set ft=python
     autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
     autocmd FileType python map <buffer> <F7> :call Flake8()<CR>
-    autocmd BufWritePost *.py call Flake8()
+    " autocmd BufWritePost *.py call Flake8()
 augroup END
 
 augroup rainbow_parentheses
@@ -486,13 +469,6 @@ augroup rainbow_parentheses
     autocmd Syntax * RainbowParenthesesLoadSquare
     autocmd Syntax * RainbowParenthesesLoadBraces
 augroup END
-
-"augroup clean_trail_spaces
-  " remove spaces
-  " autocmd FileType * autocmd BufWritePre <buffer> :%s/\s\+$//e
-  " replace tabs
-  " autocmd FileType * autocmd BufWritePre <buffer> :%s/\t/\ \ /e
-" augroup END
 
 if has("X11")
   set fillchars=vert:\│
@@ -515,8 +491,3 @@ endif
 let g:clang_format#detect_style_file=1
 
 colors jellybeans
-" :highlight Pmenu    ctermbg=darkgray
-" :highlight PmenuSel ctermbg=brown
-
-"colors distinguished
-"colors tango
