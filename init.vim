@@ -23,6 +23,7 @@ Plug 'fedorov7/vim-uefi'
 Plug 'fedorov7/ksslint'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'nsf/gocode', {'rtp': 'nvim', 'do': '~/.config/nvim/plugged/gocode/nvim/symlink.sh' }
+Plug 'vivien/vim-linux-coding-style'
 " colors
 Plug 'lilydjwg/colorizer'
 Plug 'kien/rainbow_parentheses.vim'
@@ -69,20 +70,6 @@ set shiftwidth=2
 set softtabstop=2
 set tabstop=8
 set expandtab                   " tabs are replaced with spacing
-
-function! TabToggle()
-  if &expandtab
-    set shiftwidth=8
-    set softtabstop=0
-    set noexpandtab
-  else
-    set shiftwidth=2
-    set softtabstop=2
-    set expandtab
-  endif
-endfunction
-
-nmap <F5> mz:execute TabToggle()<CR>
 
 " Turn Off Swap Files
 set noswapfile
