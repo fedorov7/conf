@@ -32,7 +32,6 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'elzr/vim-json'
 Plug 'kergoth/vim-bitbake'
 Plug 'pearofducks/ansible-vim'
-Plug 'ryanoasis/vim-devicons'
 Plug 'vimwiki/vimwiki'
 
 " Initialize plugin system
