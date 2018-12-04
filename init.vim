@@ -77,7 +77,7 @@ set nobackup
 set nowb
 
 " Display tabs and trailing spaces visually
-if has("X11")
+if has("X11") || has('nvim')
   set list listchars=tab:\ \ ,trail:· " strings to use in 'list' mode
   set fillchars=vert:\│
   let g:NERDTreeDirArrows=1
