@@ -73,10 +73,10 @@ set expandtab                   " tabs are replaced with spacing
 " Turn Off Swap Files
 set noswapfile
 set nobackup
-set nowb
+set nowritebackup
 
 " Display tabs and trailing spaces visually
-if has("X11") || has('nvim')
+if has('X11') || has('nvim')
   set list listchars=tab:\ \ ,trail:· " strings to use in 'list' mode
   set fillchars=vert:\│
   let g:NERDTreeDirArrows=1
@@ -86,10 +86,10 @@ else
   let g:NERDTreeDirArrows=0
 endif
 
-let mapleader=","
+let mapleader=','
 let g:airline_powerline_fonts = 1
 let g:SuperTabDefaultCompletionType = '<C-n>'
-let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsExpandTrigger = '<tab>'
 let g:clang_format#detect_style_file=1
 let g:rbpt_colorpairs = [
     \ ['darkmagenta', 'DarkOrchid3'],
@@ -112,6 +112,13 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace', 'clang-format', 'uncrustify'],
+\   'javascript': ['eslint'],
+\}
+
+let g:linuxsty_patterns = [ '/usr/src/', '/linux' ]
+
 " vim-go plugin options
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -119,26 +126,28 @@ let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
-" vim-go mappings
-au FileType go nmap <Leader>r <Plug>(go-run)
-au FileType go nmap <Leader>b <Plug>(go-build)
-au FileType go nmap <Leader>t <Plug>(go-test)
-au FileType go nmap <Leader>c <Plug>(go-coverage)
+augroup go_improvemnets
+  " vim-go mappings
+  au FileType go nmap <Leader>r <Plug>(go-run)
+  au FileType go nmap <Leader>b <Plug>(go-build)
+  au FileType go nmap <Leader>t <Plug>(go-test)
+  au FileType go nmap <Leader>c <Plug>(go-coverage)
 
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+  au FileType go nmap <Leader>ds <Plug>(go-def-split)
+  au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+  au FileType go nmap <Leader>dt <Plug>(go-def-tab)
 
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+  au FileType go nmap <Leader>gd <Plug>(go-doc)
+  au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+  au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
 
-au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>e <Plug>(go-rename)
+  au FileType go nmap <Leader>s <Plug>(go-implements)
+  au FileType go nmap <Leader>i <Plug>(go-info)
+  au FileType go nmap <Leader>e <Plug>(go-rename)
 
-" Only trailing spaces visually for go
-autocmd FileType go set nolist
+  " Only trailing spaces visually for go
+  autocmd FileType go set nolist
+augroup END
 
 augroup python_improvements
     autocmd BufNewFile,BufRead *.py set ft=python
@@ -172,7 +181,7 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 " CScope
 " ------------------------------------------------------------------------------
 "
-if has("cscope")
+if has('cscope')
         " use both cscope and ctag for 'ctrl-]', ':ta', and 'vim -t'
         set cscopetag
 
@@ -184,10 +193,10 @@ if has("cscope")
         set nocscopeverbose
 
         " add any cscope database in current directory
-        if filereadable("cscope.out")
+        if filereadable('cscope.out')
                 cs add cscope.out
                 " else add the database pointed to by environment variable
-        elseif $CSCOPE_DB != ""
+        elseif $CSCOPE_DB !=# ''
                 cs add $CSCOPE_DB
         endif
 
