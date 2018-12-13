@@ -112,10 +112,15 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 
+augroup ale_settings
 au FileType c,cpp let g:ale_enabled = 0
+" Bind F3 to fixing problems with ALE
+au FileType python nmap <F3> <Plug>(ale_fix)
+augroup END
 
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python' : ['autopep8', 'isort', 'yapf'],
 \}
 
 let g:linuxsty_patterns = [ '/usr/src/', '/linux' ]
