@@ -112,9 +112,10 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 
+au FileType c,cpp let g:ale_enabled = 0
+
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace', 'clang-format', 'uncrustify'],
-\   'javascript': ['eslint'],
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
 
 let g:linuxsty_patterns = [ '/usr/src/', '/linux' ]
@@ -176,6 +177,22 @@ nmap     <C-F>p <Plug>CtrlSFPwordPath
 nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
+let g:ycm_autoclose_preview_window_after_completion=1
+
+" Ycm bindings
+augroup ycm_bindings
+  au FileType c,cpp,python nnoremap <Leader>h :YcmCompleter GoToDeclaration<CR>
+  au FileType c,cpp,python nnoremap <Leader>d :YcmCompleter GoToDefinition<CR>
+  au FileType c,cpp,python nnoremap <Leader>g :YcmCompleter GoTo<CR>
+  au FileType c,cpp nnoremap <Leader>i :YcmCompleter GoToImprecise<CR>
+  au FileType c,cpp nnoremap <Leader>p :YcmCompleter GetParent<CR>
+  au FileType c,cpp nnoremap <Leader>cl :YcmCompleter ClearCompilationFlagCache<CR>
+  au FileType c,cpp nnoremap <F2> :YcmCompleter GetType<CR>
+  au FileType c,cpp nnoremap <F3> :YcmCompleter FixIt<CR>
+  au FileType c,cpp nnoremap <F8> :YcmShowDetailedDiagnostic<CR>
+  au FileType c,cpp nnoremap <F9> :YcmDiags<CR>
+augroup END
 
 "-------------------------------------------------------------------------------
 " CScope
