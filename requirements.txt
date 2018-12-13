@@ -1,0 +1,12 @@
+ansible-lint
+proselint
+cmakelint
+autopep8
+# black
+isort
+pylint
+pycodestyle
+vulture
+yapf
+vim-vint
+futures
