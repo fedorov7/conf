@@ -1,0 +1,4 @@
+mvdan.cc/sh/cmd/shfmt
+mvdan.cc/sh/cmd/gosh
+github.com/wagoodman/dive
+github.com/akavel/up
