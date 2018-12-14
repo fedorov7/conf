@@ -1,0 +1,10 @@
+alex
+dockerfile_lint
+commitizen
+commitlint --save-dev
+cz-customizable
+cz-conventional-changelog
+prettier --save-dev --save-exact
+markdownlint --save-dev
+write-good
+bash-language-server
