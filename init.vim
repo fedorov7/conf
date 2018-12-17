@@ -114,12 +114,13 @@ let g:rbpt_loadcmd_toggle = 0
 
 augroup ale_settings
 au FileType c,cpp let g:ale_enabled = 0
-" Bind F3 to fixing problems with ALE
-au FileType python,sh nmap <F3> <Plug>(ale_fix)
 augroup END
 
+" Bind F5 to fixing problems with ALE
+nmap <F5> <Plug>(ale_fix)
+
 let g:ale_fixers = {
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   '*': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
 \   'sh': ['shfmt'],
 \   'python' : ['autopep8', 'isort', 'yapf'],
 \}
