@@ -1,10 +1,10 @@
 alex
 dockerfile_lint
 commitizen
-commitlint --save-dev
+commitlint
 cz-customizable
 cz-conventional-changelog
-prettier --save-dev --save-exact
-markdownlint --save-dev
+prettier
+markdownlint
 write-good
 bash-language-server
