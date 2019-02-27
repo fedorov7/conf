@@ -48,15 +48,52 @@ ZSH_THEME="fedorov"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git svn pip colored-man cp extract)
+plugins=(zsh-completions cargo kubectl python pip colored-man-pages cp extract golang zsh-syntax-highlighting docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
+
+autoload -U compinit && compinit
 
 # User configuration
 
 [[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
 
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/.local/bin"
+
+# set linux brew bin PATH
+#if [ -d "$HOME/.linuxbrew/bin" ] ; then
+#    PATH="$HOME/.linuxbrew/bin:$PATH"
+#fi
+
+if [ -d "/usr/lib/ccache" ] ; then
+    PATH="/usr/lib/ccache:$PATH"
+fi
+
+# golang support
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export PATH="$PATH:$GOBIN"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
+
+export PATH="$PATH:/snap/bin"
+
+#rust cargo support
+export PATH="$PATH:$HOME/.cargo/bin"
+
+# npm support
+export NPM_PACKAGES="${HOME}/.npm-packages"
+export NODE_PATH="$NPM_PACKAGES/lib/node_modules:${NODE_PATH:+:$NODE_PATH}"
+export PATH="$NPM_PACKAGES/bin:$PATH"
+# Unset manpath so we can inherit from /etc/manpath via the `manpath`
+# command
+unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
+export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+
+# linuxbrew
+# export PATH="$HOME/.linuxbrew/bin:$PATH"
+# export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+# export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -81,5 +118,9 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias vimconfig="nvim ~/.config/nvim/init.vim"
+alias gitv="nvim -c Gitv"
+
+function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
