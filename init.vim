@@ -2,9 +2,10 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " autocompletion
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'w0rp/ale'
+Plug 'fedorov7/ale'
 Plug 'Valloric/YouCompleteMe', {'do': 'python3 ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer --go-completer'}
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+Plug 'rhysd/vim-clang-format'
 " helpers
 Plug 'fidian/hexmode'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -12,6 +13,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'vim-airline/vim-airline'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
+Plug 'vim-scripts/DoxygenToolkit.vim'
 " git
 Plug 'gregsexton/gitv'
 Plug 'tpope/vim-fugitive'
@@ -33,6 +35,7 @@ Plug 'elzr/vim-json'
 Plug 'kergoth/vim-bitbake'
 Plug 'pearofducks/ansible-vim'
 Plug 'vimwiki/vimwiki'
+Plug 'pboettch/vim-cmake-syntax'
 
 " Initialize plugin system
 call plug#end()
@@ -112,16 +115,21 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 
-augroup ale_settings
-au FileType c,cpp let g:ale_enabled = 0
-augroup END
-
 " Bind F5 to fixing problems with ALE
 nmap <F5> <Plug>(ale_fix)
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+let g:ale_linters = {
+\   'c': ['clangtidy', 'iwyu'],
+\   'cpp': ['clangtidy',  'iwyu'],
+\}
 
 let g:ale_fixers = {
 \   '*': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
 \   'sh': ['shfmt'],
+\   'c': ['iwyu'],
+\   'cpp': ['iwyu'],
 \   'python' : ['autopep8', 'isort', 'yapf'],
 \}
 
@@ -133,6 +141,8 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+let g:DoxygenToolkit_authorName='Alexander Fedorov'
 
 augroup go_improvemnets
   " vim-go mappings
