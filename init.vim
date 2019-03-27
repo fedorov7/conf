@@ -128,6 +128,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   '*': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
 \   'sh': ['shfmt'],
+\   'cmake' : ['cmakeformat'],
 \   'c': ['iwyu'],
 \   'cpp': ['iwyu'],
 \   'python' : ['autopep8', 'isort', 'yapf'],

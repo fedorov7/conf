@@ -1,6 +1,7 @@
 ansible-lint
 proselint
 cmakelint
+cmake-format
 autopep8
 # black
 isort
