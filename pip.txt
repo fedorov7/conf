@@ -1,15 +1,16 @@
 ansible-lint
-proselint
-cmakelint
-cmake-format
 autopep8
-# black
-isort
-pylint
-pycodestyle
-vulture
-yapf
-vim-vint
+black
+cmake
+cmake-format
+cmakelint
 futures
 gitlint
+isort
 proselint
+proselint
+pycodestyle
+pylint
+vim-vint
+vulture
+yapf
