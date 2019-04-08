@@ -1,58 +1,55 @@
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
+export HISTFILE=~/.zsh_history
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
-#ZSH_THEME="afowler"
-#ZSH_THEME="steeef"
-ZSH_THEME="fedorov"
+# zplug support
+source ~/.zplug/init.zsh
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+# Load completion library for those sweet [tab] squares
+zplug "lib/completion", from:oh-my-zsh
+zplug "lib/function", from:oh-my-zsh
+zplug "lib/history", from:oh-my-zsh
+zplug "lib/key-bindings:", from:oh-my-zsh
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+# Supports oh-my-zsh plugins and the like
+zplug "plugins/cargo",   from:oh-my-zsh
+zplug "plugins/colored-man-pages",   from:oh-my-zsh
+zplug "plugins/cp",   from:oh-my-zsh
+zplug "plugins/docker-compose",   from:oh-my-zsh
+zplug "plugins/docker",   from:oh-my-zsh
+zplug "plugins/extract",   from:oh-my-zsh
+zplug "plugins/git",   from:oh-my-zsh
+zplug "plugins/golang",   from:oh-my-zsh
+zplug "plugins/kubectl",   from:oh-my-zsh
+zplug "plugins/pip",   from:oh-my-zsh
+zplug "plugins/python",   from:oh-my-zsh
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+zplug "fedorov7/conf", use:fedorov.zsh-theme, from:github, as:theme
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+zplug "zsh-users/zsh-completions", from:github
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+zplug "zsh-users/zsh-history-substring-search", from:github, as:plugin
 
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+# Set the priority when loading
+# e.g., zsh-syntax-highlighting must be loaded
+# after executing compinit command and sourcing other plugins
+# (If the defer tag is given 2 or above, run after compinit command)
+zplug "zsh-users/zsh-syntax-highlighting", from:github, defer:2
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
 
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-completions cargo kubectl python pip colored-man-pages cp extract golang zsh-syntax-highlighting docker docker-compose)
-
-source $ZSH/oh-my-zsh.sh
-
-autoload -U compinit && compinit
+# Then, source plugins and add commands to $PATH
+zplug load
 
 # User configuration
 
@@ -65,9 +62,9 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 #    PATH="$HOME/.linuxbrew/bin:$PATH"
 #fi
 
-if [ -d "/usr/lib/ccache" ] ; then
-    PATH="/usr/lib/ccache:$PATH"
-fi
+#if [ -d "/usr/lib/ccache" ] ; then
+#    PATH="/usr/lib/ccache:$PATH"
+#fi
 
 # golang support
 export GOPATH="$HOME/go"
@@ -84,6 +81,7 @@ export PATH="$PATH:$HOME/.cargo/bin"
 export NPM_PACKAGES="${HOME}/.npm-packages"
 export NODE_PATH="$NPM_PACKAGES/lib/node_modules:${NODE_PATH:+:$NODE_PATH}"
 export PATH="$NPM_PACKAGES/bin:$PATH"
+
 # Unset manpath so we can inherit from /etc/manpath via the `manpath`
 # command
 unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
