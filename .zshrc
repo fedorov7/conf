@@ -1,7 +1,8 @@
 export HISTFILE=~/.zsh_history
 
 # zplug support
-source ~/.zplug/init.zsh
+export ZPLUG_HOME=~/.zplug
+source $ZPLUG_HOME/init.zsh
 
 # Load completion library for those sweet [tab] squares
 zplug "lib/completion", from:oh-my-zsh
@@ -13,11 +14,13 @@ zplug "lib/key-bindings:", from:oh-my-zsh
 zplug "plugins/cargo",   from:oh-my-zsh
 zplug "plugins/colored-man-pages",   from:oh-my-zsh
 zplug "plugins/cp",   from:oh-my-zsh
-zplug "plugins/docker-compose",   from:oh-my-zsh
 zplug "plugins/docker",   from:oh-my-zsh
+zplug "plugins/docker-compose",   from:oh-my-zsh
 zplug "plugins/extract",   from:oh-my-zsh
 zplug "plugins/git",   from:oh-my-zsh
+zplug "plugins/gitignore",   from:oh-my-zsh
 zplug "plugins/golang",   from:oh-my-zsh
+zplug "plugins/kubectl",   from:oh-my-zsh
 zplug "plugins/kubectl",   from:oh-my-zsh
 zplug "plugins/pip",   from:oh-my-zsh
 zplug "plugins/python",   from:oh-my-zsh
@@ -57,22 +60,12 @@ zplug load
 
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/.local/bin"
 
-# set linux brew bin PATH
-#if [ -d "$HOME/.linuxbrew/bin" ] ; then
-#    PATH="$HOME/.linuxbrew/bin:$PATH"
-#fi
-
-#if [ -d "/usr/lib/ccache" ] ; then
-#    PATH="/usr/lib/ccache:$PATH"
-#fi
-
 # golang support
 export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOBIN"
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 
-export PATH="$PATH:/snap/bin"
+# export PATH="$PATH:/snap/bin"
 
 #rust cargo support
 export PATH="$PATH:$HOME/.cargo/bin"
@@ -92,7 +85,8 @@ export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 # export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 # export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 
-# export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:$MANPATH"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -110,6 +104,8 @@ export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+export HOMEBREW_GITHUB_API_TOKEN="$(cat HOMEBREW_GITHUB_API_TOKEN)"
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -117,8 +113,8 @@ export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
 #
 # Example aliases
 alias zshconfig="nvim ~/.zshrc"
-alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias vimconfig="nvim ~/.config/nvim/init.vim"
 alias gitv="nvim -c Gitv"
 
-function gi() { curl -L -s https://www.gitignore.io/api/$@ ;}
+alias vimdiff="nvim -d"
+alias vimdiffbin="nvim -d -b"
