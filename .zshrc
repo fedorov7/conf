@@ -10,7 +10,7 @@ zplug "lib/function", from:oh-my-zsh
 zplug "lib/history", from:oh-my-zsh
 zplug "lib/key-bindings:", from:oh-my-zsh
 
-# Supports oh-my-zsh plugins and the like
+# Supports oh-my-zsh plugins
 zplug "plugins/cargo",   from:oh-my-zsh
 zplug "plugins/colored-man-pages",   from:oh-my-zsh
 zplug "plugins/cp",   from:oh-my-zsh
@@ -25,10 +25,14 @@ zplug "plugins/kubectl",   from:oh-my-zsh
 zplug "plugins/pip",   from:oh-my-zsh
 zplug "plugins/python",   from:oh-my-zsh
 
+# Supports prezto plugins
+zplug "modules/spectrum", from:prezto
+
+# Custom theme
 zplug "fedorov7/conf", use:fedorov.zsh-theme, from:github, as:theme
 
+# Supports zsh-users
 zplug "zsh-users/zsh-completions", from:github
-
 zplug "zsh-users/zsh-history-substring-search", from:github, as:plugin
 
 # Bind terminal-specific up and down keys
