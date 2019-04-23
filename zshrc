@@ -6,9 +6,12 @@ source $ZPLUG_HOME/init.zsh
 
 # Load completion library for those sweet [tab] squares
 zplug "lib/completion", from:oh-my-zsh
-zplug "lib/function", from:oh-my-zsh
+zplug "lib/git", from:oh-my-zsh
+zplug "lib/grep", from:oh-my-zsh
 zplug "lib/history", from:oh-my-zsh
 zplug "lib/key-bindings", from:oh-my-zsh
+zplug "lib/spectrum", from:oh-my-zsh
+zplug "lib/termsupport", from:oh-my-zsh
 
 # Supports oh-my-zsh plugins
 zplug "plugins/cargo",   from:oh-my-zsh
@@ -21,12 +24,14 @@ zplug "plugins/git",   from:oh-my-zsh
 zplug "plugins/gitignore",   from:oh-my-zsh
 zplug "plugins/golang",   from:oh-my-zsh
 zplug "plugins/kubectl",   from:oh-my-zsh
-zplug "plugins/kubectl",   from:oh-my-zsh
+zplug "plugins/npm",   from:oh-my-zsh
 zplug "plugins/pip",   from:oh-my-zsh
 zplug "plugins/python",   from:oh-my-zsh
+zplug "plugins/web-search",   from:oh-my-zsh
 
 # Supports prezto plugins
 zplug "modules/spectrum", from:prezto
+zplug "modules/archive", from:prezto
 
 # Custom theme
 zplug "fedorov7/conf", use:fedorov.zsh-theme, from:github, as:theme
