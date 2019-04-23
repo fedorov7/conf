@@ -34,6 +34,9 @@ zplug "fedorov7/conf", use:fedorov.zsh-theme, from:github, as:theme
 # Custom user configuration
 zplug "fedorov7/conf", use:".zshrc.user"
 
+# Custom osx configuration
+zplug "fedorov7/conf", use:".zshrc.darwin", if:"[[ $OSTYPE == *darwin* ]]"
+
 # Custom commands
 zplug "fedorov7/conf", as:command, use:"uuidc.py", rename-to:uuidc
 
