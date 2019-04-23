@@ -8,7 +8,7 @@ source $ZPLUG_HOME/init.zsh
 zplug "lib/completion", from:oh-my-zsh
 zplug "lib/function", from:oh-my-zsh
 zplug "lib/history", from:oh-my-zsh
-zplug "lib/key-bindings:", from:oh-my-zsh
+zplug "lib/key-bindings", from:oh-my-zsh
 
 # Supports oh-my-zsh plugins
 zplug "plugins/cargo",   from:oh-my-zsh
