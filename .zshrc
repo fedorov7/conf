@@ -31,6 +31,12 @@ zplug "modules/spectrum", from:prezto
 # Custom theme
 zplug "fedorov7/conf", use:fedorov.zsh-theme, from:github, as:theme
 
+# Custom user configuration
+zplug "fedorov7/conf", use:".zshrc.user"
+
+# Custom commands
+zplug "fedorov7/conf", as:command, use:"uuidc.py", raname-to:uuidc
+
 # Supports zsh-users
 zplug "zsh-users/zsh-completions", from:github
 zplug "zsh-users/zsh-history-substring-search", from:github, as:plugin
@@ -67,68 +73,3 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load
-
-# User configuration
-
-[[ "$TERM" == "xterm" ]] && export TERM=xterm-256color
-
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$HOME/.local/bin"
-
-# golang support
-export GOPATH="$HOME/go"
-export GOBIN="$GOPATH/bin"
-export PATH="$PATH:$GOBIN"
-
-# export PATH="$PATH:/snap/bin"
-
-#rust cargo support
-export PATH="$PATH:$HOME/.cargo/bin"
-
-# npm support
-export NPM_PACKAGES="${HOME}/.npm-packages"
-export NODE_PATH="$NPM_PACKAGES/lib/node_modules:${NODE_PATH:+:$NODE_PATH}"
-export PATH="$NPM_PACKAGES/bin:$PATH"
-
-# Unset manpath so we can inherit from /etc/manpath via the `manpath`
-# command
-unset MANPATH  # delete if you already modified MANPATH elsewhere in your config
-export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
-
-# linuxbrew
-# export PATH="$HOME/.linuxbrew/bin:$PATH"
-# export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
-# export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
-
-export MANPATH="/usr/local/man:$MANPATH"
-export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-export HOMEBREW_GITHUB_API_TOKEN="$(cat HOMEBREW_GITHUB_API_TOKEN)"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias zshconfig="nvim ~/.zshrc"
-alias vimconfig="nvim ~/.config/nvim/init.vim"
-alias gitv="nvim -c Gitv"
-
-alias vimdiff="nvim -d"
-alias vimdiffbin="nvim -d -b"
