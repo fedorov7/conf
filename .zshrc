@@ -35,7 +35,7 @@ zplug "fedorov7/conf", use:fedorov.zsh-theme, from:github, as:theme
 zplug "fedorov7/conf", use:".zshrc.user"
 
 # Custom commands
-zplug "fedorov7/conf", as:command, use:"uuidc.py", raname-to:uuidc
+zplug "fedorov7/conf", as:command, use:"uuidc.py", rename-to:uuidc
 
 # Supports zsh-users
 zplug "zsh-users/zsh-completions", from:github
