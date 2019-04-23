@@ -32,13 +32,13 @@ zplug "modules/spectrum", from:prezto
 zplug "fedorov7/conf", use:fedorov.zsh-theme, from:github, as:theme
 
 # Custom user configuration
-zplug "fedorov7/conf", use:".zshrc.user"
+zplug "fedorov7/conf", use:"zshrc.user"
 
 # Custom osx configuration
-zplug "fedorov7/conf", use:".zshrc.darwin", if:"[[ $OSTYPE == *darwin* ]]"
+zplug "fedorov7/conf", use:"zshrc.darwin", if:"[[ $OSTYPE == *darwin* ]]"
 
 # Custom commands
-zplug "fedorov7/conf", as:command, use:"uuidc.py", rename-to:uuidc
+zplug "fedorov7/conf", as:command, use:"bin/uuidc.py", rename-to:uuidc
 
 # Supports zsh-users
 zplug "zsh-users/zsh-completions", from:github
