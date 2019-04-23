@@ -10,7 +10,7 @@ export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOBIN"
 
-# export PATH="$PATH:/snap/bin"
+export PATH="$PATH:/snap/bin"
 
 #rust cargo support
 export PATH="$PATH:$HOME/.cargo/bin"
