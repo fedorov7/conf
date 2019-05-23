@@ -42,6 +42,9 @@ zplug "fedorov7/conf", use:"zshrc.user"
 # Custom osx configuration
 zplug "fedorov7/conf", use:"zshrc.darwin", if:"[[ $OSTYPE == *darwin* ]]"
 
+# Custom linux configuration
+zplug "fedorov7/conf", use:"zshrc.linux", if:"[[ $OSTYPE == *linux* ]]"
+
 # Custom commands
 zplug "fedorov7/conf", as:command, use:"bin/uuidc.py", rename-to:uuidc
 
