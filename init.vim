@@ -34,7 +34,6 @@ Plug 'ekalinin/Dockerfile.vim'
 Plug 'elzr/vim-json'
 Plug 'kergoth/vim-bitbake'
 Plug 'pearofducks/ansible-vim'
-Plug 'vimwiki/vimwiki'
 Plug 'pboettch/vim-cmake-syntax'
 
 " Initialize plugin system
@@ -114,10 +113,19 @@ let g:rbpt_colorpairs = [
 let g:rbpt_max = 16
 let g:rbpt_loadcmd_toggle = 0
 
-" Bind F5 to fixing problems with ALE
-nmap <F5> <Plug>(ale_fix)
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
+nmap <F2> :map<CR>
+
+au FileType c nmap <Leader>a :LinuxCodingStyle<CR>
+
+" Ycm bindings
+augroup ale_bindings
+  " Bind F5 to fixing problems with ALE
+  nmap <F4> <Plug>(ale_lint)
+  nmap <F5> <Plug>(ale_fix)
+  nmap <F7> <Plug>(ale_detail)
+  nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+  nmap <silent> <C-j> <Plug>(ale_next_wrap)
+augroup END
 
 let g:ale_linters = {
 \   'c': ['clangtidy'],
