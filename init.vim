@@ -91,7 +91,6 @@ endif
 
 let mapleader=','
 let g:airline_powerline_fonts = 1
-let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = '<tab>'
 let g:clang_format#detect_style_file=1
 let g:rbpt_colorpairs = [
@@ -121,18 +120,21 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 let g:ale_linters = {
-\   'c': ['clangtidy', 'iwyu'],
-\   'cpp': ['clangtidy',  'iwyu'],
+\   'c': ['clangtidy'],
+\   'cpp': ['clangtidy'],
 \}
 
 let g:ale_fixers = {
-\   '*': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'markdown' : ['prettier'],
 \   'sh': ['shfmt'],
 \   'cmake' : ['cmakeformat'],
 \   'c': ['iwyu'],
 \   'cpp': ['iwyu'],
-\   'python' : ['autopep8', 'isort', 'yapf'],
+\   'python' : ['autopep8', 'isort', 'yapf', 'black'],
 \}
+
+let g:airline#extensions#ale#enabled = 1
 
 let g:linuxsty_patterns = [ '/usr/src/', '/linux' ]
 
@@ -196,18 +198,26 @@ nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
+let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_confirm_extra_conf=0
+let g:ycm_filepath_completion_use_working_dir = 1
+let g:ycm_key_invoke_completion =  '<S-TAB>'
+let g:ycm_key_list_select_completion = ['<Down>']
+let g:ycm_key_list_previous_completion = ['<Up>']
+let g:ycm_use_ultisnips_completer = 1
 
 " Ycm bindings
 augroup ycm_bindings
-  au FileType c,cpp,python nnoremap <Leader>h :YcmCompleter GoToDeclaration<CR>
-  au FileType c,cpp,python nnoremap <Leader>d :YcmCompleter GoToDefinition<CR>
+  au FileType c,cpp,python nnoremap <Leader>d :YcmCompleter GoToDeclaration<CR>
+  au FileType c,cpp,python nnoremap <Leader>f :YcmCompleter GoToDefinition<CR>
   au FileType c,cpp,python nnoremap <Leader>g :YcmCompleter GoTo<CR>
-  au FileType c,cpp nnoremap <Leader>i :YcmCompleter GoToImprecise<CR>
-  au FileType c,cpp nnoremap <Leader>p :YcmCompleter GetParent<CR>
-  au FileType c,cpp nnoremap <Leader>cl :YcmCompleter ClearCompilationFlagCache<CR>
-  au FileType c,cpp nnoremap <F2> :YcmCompleter GetType<CR>
+  au FileType c,cpp,python nnoremap <Leader>h :YcmCompleter GetDoc<CR>
+  au FileType c,cpp,python nnoremap <Leader>t :YcmCompleter GetType<CR>
+  au FileType python       nnoremap <Leader>r :YcmCompleter GoToReferences<CR>
+  au FileType c,cpp        nnoremap <Leader>i :YcmCompleter GoToImprecise<CR>
+  au FileType c,cpp        nnoremap <Leader>p :YcmCompleter GetParent<CR>
+  au FileType c,cpp        nnoremap <Leader>c :YcmCompleter ClearCompilationFlagCache<CR>
   au FileType c,cpp nnoremap <F3> :YcmCompleter FixIt<CR>
   au FileType c,cpp nnoremap <F8> :YcmShowDetailedDiagnostic<CR>
   au FileType c,cpp nnoremap <F9> :YcmDiags<CR>
