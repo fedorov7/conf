@@ -14,6 +14,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
 Plug 'vim-scripts/DoxygenToolkit.vim'
+Plug 'tpope/vim-sensible'
 " git
 Plug 'gregsexton/gitv'
 Plug 'tpope/vim-fugitive'
