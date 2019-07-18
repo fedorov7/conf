@@ -1,0 +1,27 @@
+---
+- name: Install zsh
+  become: true
+  hosts: localhost
+  tasks:
+    - apt:
+        name:
+          - curl
+          - zsh
+          - git
+          - gawk
+        autoclean: 'yes'
+        autoremove: 'yes'
+      when: ansible_facts['os_family'] == "Debian"
+    - user:
+        name: '{{ ansible_user }}'
+        shell: /usr/bin/zsh
+
+- name: Configure zsh
+  hosts: localhost
+  tasks:
+    - copy:
+        src: ./zshrc
+        dest: "/home/{{ ansible_user }}/.zshrc"
+        owner: '{{ ansible_user }}'
+    - shell: curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+      ignore_errors: true
