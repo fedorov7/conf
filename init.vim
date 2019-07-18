@@ -116,7 +116,9 @@ let g:rbpt_loadcmd_toggle = 0
 
 nmap <F2> :map<CR>
 
-au FileType c nmap <Leader>a :LinuxCodingStyle<CR>
+augroup c_bindins
+  au FileType c nmap <Leader>a :LinuxCodingStyle<CR>
+augroup END
 
 " Ycm bindings
 augroup ale_bindings
@@ -127,6 +129,8 @@ augroup ale_bindings
   nmap <silent> <C-k> <Plug>(ale_previous_wrap)
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
 augroup END
+
+let g:ale_python_pylint_options = '--variable-naming-style=any --disable=missing-docstring'
 
 let g:ale_linters = {
 \   'c': ['clangtidy'],
