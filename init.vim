@@ -130,7 +130,7 @@ augroup ale_bindings
   nmap <silent> <C-j> <Plug>(ale_next_wrap)
 augroup END
 
-let g:ale_python_pylint_options = '--variable-naming-style=any --disable=missing-docstring'
+let g:ale_python_pylint_options = '--include-naming-hint=y --const-naming-style=any --attr-naming-style=any --variable-naming-style=any --disable=missing-docstring'
 
 let g:ale_linters = {
 \   'c': ['clangtidy'],
