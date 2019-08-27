@@ -149,6 +149,7 @@ augroup ale_bindings
 augroup END
 
 let g:ale_python_pylint_options = '--include-naming-hint=y --const-naming-style=any --attr-naming-style=any --variable-naming-style=any --disable=missing-docstring'
+let g:ale_python_auto_pipenv = 1
 
 let g:ale_linters = {
 \   'c': ['clangtidy'],
@@ -211,16 +212,26 @@ augroup go_improvemnets
   autocmd FileType go set nolist
 augroup END
 
+"python with virtualenv support
+python3 << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+  project_base_dir = os.environ['VIRTUAL_ENV']
+  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+  execfile(activate_this, dict(__file__=activate_this))
+EOF
+
 augroup python_improvements
-    autocmd BufNewFile,BufRead *.py set ft=python
-    autocmd FileType python set tabstop=4|set shiftwidth=4|set expandtab
+  autocmd BufNewFile,BufRead *.py set ft=python
+  autocmd FileType python set tabstop=4|set softtabstop=4|set shiftwidth=4|set textwidth=79|set expandtab|set fileformat=unix
 augroup END
 
 augroup rainbow_parentheses
-    autocmd VimEnter * RainbowParenthesesToggle
-    autocmd Syntax * RainbowParenthesesLoadRound
-    autocmd Syntax * RainbowParenthesesLoadSquare
-    autocmd Syntax * RainbowParenthesesLoadBraces
+  autocmd VimEnter * RainbowParenthesesToggle
+  autocmd Syntax * RainbowParenthesesLoadRound
+  autocmd Syntax * RainbowParenthesesLoadSquare
+  autocmd Syntax * RainbowParenthesesLoadBraces
 augroup END
 
 " System clipboard support
@@ -247,6 +258,7 @@ let g:ycm_key_invoke_completion =  '<S-TAB>'
 let g:ycm_key_list_select_completion = ['<Down>']
 let g:ycm_key_list_previous_completion = ['<Up>']
 let g:ycm_use_ultisnips_completer = 1
+let g:ycm_python_interpreter = '/usr/local/anaconda3/bin/python'
 
 " Ycm bindings
 augroup ycm_bindings
