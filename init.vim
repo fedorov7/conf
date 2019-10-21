@@ -6,6 +6,7 @@ Plug 'fedorov7/ale'
 Plug 'Valloric/YouCompleteMe', {'do': 'python3 ~/.local/share/nvim/plugged/YouCompleteMe/install.py --clang-completer --go-completer'}
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
 Plug 'rhysd/vim-clang-format'
+Plug 'tenfyzhong/CompleteParameter.vim'
 " helpers
 Plug 'fidian/hexmode'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
