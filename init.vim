@@ -16,6 +16,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'dyng/ctrlsf.vim'
 Plug 'vim-scripts/DoxygenToolkit.vim'
 Plug 'tpope/vim-sensible'
+Plug 'vim-ctrlspace/vim-ctrlspace'
+Plug 'voldikss/vim-translate-me'
 " git
 Plug 'gregsexton/gitv'
 Plug 'tpope/vim-fugitive'
@@ -117,7 +119,22 @@ let g:rbpt_loadcmd_toggle = 0
 
 nmap <F2> :map<CR>
 
-augroup c_bindins
+let g:CtrlSpaceDefaultMappingKey = '<C-space> '
+
+augroup vtm_bindings
+let g:vtm_target_lang = 'ru'
+" Echo translation in the cmdline
+nmap <silent> <Leader>tt <Plug>Translate
+vmap <silent> <Leader>tt <Plug>TranslateV
+" Display translation in the popup window
+nmap <silent> <Leader>tw <Plug>TranslateW
+vmap <silent> <Leader>tw <Plug>TranslateWV
+" Replace the text with translation
+nmap <silent> <Leader>tr <Plug>TranslateR
+vmap <silent> <Leader>tr <Plug>TranslateRV
+augroup END
+
+augroup c_bindings
   au FileType c nmap <Leader>a :LinuxCodingStyle<CR>
 augroup END
 
@@ -160,6 +177,16 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 let g:DoxygenToolkit_authorName='Alexander Fedorov'
+
+augroup complete_parameter
+  inoremap <silent><expr> ( complete_parameter#pre_complete("()")
+  smap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+  imap <c-j> <Plug>(complete_parameter#goto_next_parameter)
+  smap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+  imap <c-k> <Plug>(complete_parameter#goto_previous_parameter)
+
+  let g:complete_parameter_use_ultisnips_mapping = 1
+augroup END
 
 augroup go_improvemnets
   " vim-go mappings
