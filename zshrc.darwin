@@ -1,6 +1,5 @@
 # OSX additional configuration
 
-# additional paths for python pip
-export PATH="$HOME/Library/Python/3.7/bin:$HOME/Library/Python/2.7/bin:$PATH"
-
-export PATH="/usr/local/anaconda3/bin:$PATH"
+# llvm support
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/opt/llvm/lib"
