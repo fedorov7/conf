@@ -16,3 +16,5 @@
     # Detect whitespace errors when applying a patch
     whitespace = fix
     # whitespace = nowarn
+[pull]
+    rebase = true
