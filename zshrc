@@ -14,7 +14,7 @@ zplug "lib/spectrum", from:oh-my-zsh
 zplug "lib/termsupport", from:oh-my-zsh
 
 # Supports oh-my-zsh plugins
-zplug "plugins/cargo",   from:oh-my-zsh
+zplug "plugins/rust",   from:oh-my-zsh
 zplug "plugins/colored-man-pages",   from:oh-my-zsh
 zplug "plugins/cp",   from:oh-my-zsh
 zplug "plugins/docker",   from:oh-my-zsh
