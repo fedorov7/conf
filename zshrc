@@ -28,6 +28,7 @@ zplug "plugins/npm",   from:oh-my-zsh
 zplug "plugins/pip",   from:oh-my-zsh
 zplug "plugins/python",   from:oh-my-zsh
 zplug "plugins/web-search",   from:oh-my-zsh
+zplug "plugins/pyenv",   from:oh-my-zsh
 
 # Supports prezto plugins
 zplug "modules/spectrum", from:prezto
