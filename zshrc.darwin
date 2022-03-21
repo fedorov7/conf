@@ -2,7 +2,7 @@
 zplug "plugins/brew",   from:oh-my-zsh
 
 export BREW_PATH="/opt/homebrew"
-export PATH="${BREW_PATH}/sbin:$PATH"
+export PATH="${BREW_PATH}/sbin:${BREW_PATH}/bin:$PATH"
 
 # llvm support
 export PATH="${BREW_PATH}/opt/llvm/bin::$PATH"
