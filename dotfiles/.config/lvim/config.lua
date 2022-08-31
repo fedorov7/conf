@@ -20,6 +20,12 @@ lvim.leader = "space"
 -- add your own keymapping
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<F12>"] = ":NvimTreeToggle<cr>"
+lvim.keys.normal_mode["<C-p>"] = [["+gP]]
+lvim.keys.visual_mode["<C-x>"] = [["+x]]
+lvim.keys.visual_mode["<C-c>"] = [["+y]]
+lvim.keys.visual_mode["f"] = ":lua vim.lsp.buf.range_formatting()<cr>"
+lvim.keys.visual_mode["s"] = ":!sort<cr>"
+
 -- unmap a default keymapping
 -- vim.keymap.del("n", "<C-Up>")
 -- override a default keymapping
@@ -44,6 +50,8 @@ lvim.keys.normal_mode["<F12>"] = ":NvimTreeToggle<cr>"
 -- }
 
 -- Use which-key to add extra bindings with the leader-key prefix
+--lvim.builtin.which_key.mappings["t"] = { ":StripWhitespace<CR>", "Strip whitespace" }
+lvim.builtin.which_key.mappings["h"] = { "<cmd>Telescope grep_string<cr>", "Search for string under cursor" }
 -- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 -- lvim.builtin.which_key.mappings["t"] = {
 --   name = "+Trouble",
