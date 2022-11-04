@@ -10,8 +10,6 @@ export GOPATH="$HOME/go"
 export GOBIN="$GOPATH/bin"
 export PATH="$PATH:$GOBIN"
 
-export PATH="$PATH:/snap/bin"
-
 #rust cargo support
 export PATH="$PATH:$HOME/.cargo/bin"
 
@@ -36,15 +34,13 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export EDITOR='nvim'
+export EDITOR='lvim'
 
 if [[ -f "HOMEBREW_GITHUB_API_TOKEN" ]]; then
   export HOMEBREW_GITHUB_API_TOKEN="$(cat HOMEBREW_GITHUB_API_TOKEN)"
 fi
 
 # personal aliases
-alias zshconfig="nvim ~/.zshrc"
-alias vimconfig="nvim ~/.config/nvim/init.vim"
-alias gitv="nvim -c Gitv"
-alias vimdiff="nvim -d"
-alias vimdiffbin="nvim -d -b"
+alias zshconfig="lvim ~/.zshrc"
+alias vimdiff="lvim -d"
+alias vimdiffbin="lvim -d -b"
