@@ -80,13 +80,13 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  "cpp",
-  "json",
-  "lua",
-  "python",
-  "yaml",
+	"bash",
+	"c",
+	"cpp",
+	"json",
+	"lua",
+	"python",
+	"yaml",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -148,6 +148,15 @@ lvim.builtin.treesitter.highlight.enable = true
 --     filetypes = { "typescript", "typescriptreact" },
 --   },
 -- }
+local formatters = require("lvim.lsp.null-ls.formatters")
+formatters.setup({
+	{ command = "black", extra_args = { "--line-length", "80" }, filetypes = { "python" } },
+	{ command = "autopep8", filetypes = { "python" } },
+	{ command = "isort", filetypes = { "python" } },
+	{ command = "yamlfmt", filetypes = { "yaml" } },
+	{ command = "cmake-format", filetypes = { "cmake" } },
+	{ command = "stylua", filetypes = { "lua" } },
+})
 
 -- -- set additional linters
 -- local linters = require "lvim.lsp.null-ls.linters"
@@ -175,12 +184,12 @@ lvim.builtin.treesitter.highlight.enable = true
 --     },
 -- }
 lvim.plugins = {
-  { "lunarvim/darkplus.nvim" },
-  { "tpope/vim-abolish" },
-  { "tpope/vim-fugitive" },
-  { "fedorov7/vim-uefi" },
-  { "fedorov7/ksslint" },
-  { "mbbill/fencview" },
+	{ "lunarvim/darkplus.nvim" },
+	{ "tpope/vim-abolish" },
+	{ "tpope/vim-fugitive" },
+	{ "fedorov7/vim-uefi" },
+	{ "fedorov7/ksslint" },
+	{ "mbbill/fencview" },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
