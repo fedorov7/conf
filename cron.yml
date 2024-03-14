@@ -1,0 +1,10 @@
+- name: Make usefull crob job
+  hosts: localhost 
+  tasks:
+    - name: Create archlinux yay update at 6:00 
+      ansible.builtin.cron:
+        name: "Yay update"
+        weekday: "0-6"
+        hour: "6"
+        minute: "0"
+        job: "yay -Suy --noconfirm --askyesremovemake"
