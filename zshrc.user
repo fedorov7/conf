@@ -34,13 +34,13 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export EDITOR='lvim'
+export EDITOR='nvim'
 
 if [[ -f "HOMEBREW_GITHUB_API_TOKEN" ]]; then
   export HOMEBREW_GITHUB_API_TOKEN="$(cat HOMEBREW_GITHUB_API_TOKEN)"
 fi
 
 # personal aliases
-alias zshconfig="lvim ~/.zshrc"
-alias vimdiff="lvim -d"
-alias vimdiffbin="lvim -d -b"
+alias zshconfig="nvim ~/.zshrc"
+alias vimdiff="nvim -d"
+alias vimdiffbin="nvim -d -b"
